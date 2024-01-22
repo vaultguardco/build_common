@@ -8,9 +8,9 @@ if(!$control_file) {
 	return
 }
 
-if($workspace) {
-	cd $workspace
-}
+# if($workspace) {
+	# cd $workspace
+# }
 
 Write-Output "Parsing control-file: $control_file"
 foreach($line in Get-Content $control_file) {
@@ -20,13 +20,13 @@ foreach($line in Get-Content $control_file) {
 	
 	switch($command) {
 		"build_sln_win" {
-			& "$workspace/build_sln_win.ps1" -path "$path"
+			& "./build_sln_win.ps1" -path "$path"
 		}
 		"nunit_test" {
-			& "$workspace/nunit_test.ps1" -path "$path"
+			& "./nunit_test.ps1" -path "$path"
 		}
 		"build_dotnet" {
-			& "$workspace/build_dotnet.ps1" -path "$path"
+			& "./build_dotnet.ps1" -path "$path"
 		}
 	}
 }
