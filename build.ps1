@@ -15,8 +15,18 @@ if($workspace) {
 Write-Output "Parsing control-file: $control_file"
 foreach($line in Get-Content $control_file) {
 	$command = ($line -split ' ')[0]
-	if($command -eq "#") {return} # It's a comment so let's skip it!
+	if($command -eq "#") {continue} # It's a comment so let's skip it!
+	$path = $line.TrimStart("$command").TrimStart()
 	
-	Write-Output "Found command: $command"
+	switch($command) {
+		"build_sln_win" {
+			& "$workspace/build_sln_win.ps1" -path "$path"
+		}
+		"nunit_test" {
+			& "$workspace/nunit_test.ps1" -path "$path"
+		}
+		"build_dotnet" {
+			& "$workspace/build_dotnet.ps1" -path "$path"
+		}
+	}
 }
-# & {Invoke-Expression( Get-Content -Raw $control_file) }
