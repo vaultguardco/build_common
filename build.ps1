@@ -29,7 +29,7 @@ foreach($line in Get-Content $control_file) {
 			& "./build_dotnet.ps1" -path "$workspace\$path"
 		}
 		"iscc" {
-			& "iscc $workspace\$path"
+			& Invoke-Expression("iscc $workspace\$path")
 		}
 	}
 }
