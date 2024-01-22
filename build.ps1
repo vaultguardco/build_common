@@ -20,13 +20,13 @@ foreach($line in Get-Content $control_file) {
 	
 	switch($command) {
 		"build_sln_win" {
-			& "./build_sln_win.ps1" -path "$path"
+			& "./build_sln_win.ps1" -path "$workspace\$path"
 		}
 		"nunit_test" {
-			& "./nunit_test.ps1" -path "$path"
+			& "./nunit_test.ps1" -path "$workspace\$path"
 		}
 		"build_dotnet" {
-			& "./build_dotnet.ps1" -path "$path"
+			& "./build_dotnet.ps1" -path "$workspace\$path"
 		}
 	}
 }
