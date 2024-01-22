@@ -12,5 +12,8 @@ if($workspace) {
 	cd $workspace
 }
 
-Write-Output "Executing by file: $control_file"
-& {Invoke-Expression( Get-Content -Raw $control_file) }
+Write-Output "Parsing control-file: $control_file"
+foreach($line in Get-Content $control_file) {
+	Write-Output "Line containing: $line"
+}
+# & {Invoke-Expression( Get-Content -Raw $control_file) }
